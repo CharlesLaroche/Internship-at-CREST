@@ -14,6 +14,10 @@ def MOM(X , K) :
     idx = alea.permutation(n)
     means_blocks = np.zeros(K)
     
+    if K == 1 : 
+        
+        return idx
+    
     for i in range(K) :
         
         means_blocks[i] = np.mean(X[idx[ j * i : j * (i + 1)]])
@@ -33,7 +37,7 @@ def lt_lt_prime(X , Y , t , t_prime) :
     
     Nt = Y - X @ t
     Nt_prime = Y - X @ t_prime
-    TABL = (np.square(Nt , Nt) - np.square(Nt_prime , Nt_prime)).flatten()
+    TABL = np.array((np.square(Nt , Nt) - np.square(Nt_prime , Nt_prime))).flatten()
     
     return TABL
 
@@ -99,7 +103,7 @@ def P_quadra(X,Y,t) :
     
     Nt = Y - X @ t
     
-    return np.square(Nt).flatten()
+    return np.array(np.square(Nt)).flatten()
 
 def soft_thresholding(lamb , t) :
     
